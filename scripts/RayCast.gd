@@ -7,6 +7,6 @@ func _ready():
 
 func _process(delta):
 	var collider = get_collider()
-	if is_colliding() and collider is Interactable:
-		if Input.is_action_just_pressed("interact"):
+	if is_colliding():
+		if collider is Interactable and Input.is_action_just_pressed("interact"):
 			collider.interact()

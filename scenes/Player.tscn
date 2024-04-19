@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
-[ext_resource path="res://RayCast.gd" type="Script" id=2]
+[ext_resource path="res://scripts/RayCast.gd" type="Script" id=2]
+[ext_resource path="res://tes.png" type="Texture" id=3]
+[ext_resource path="res://icon.png" type="Texture" id=4]
 
 [sub_resource type="CapsuleShape" id=1]
 
@@ -9,18 +11,19 @@
 
 [node name="Player" type="KinematicBody" groups=["player"]]
 script = ExtResource( 1 )
+slots = [ "", "", "" ]
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
 shape = SubResource( 1 )
 
 [node name="Head" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.228, 0 )
 
 [node name="Camera" type="Camera" parent="Head"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.22766, 0 )
 
-[node name="RayCast" type="RayCast" parent="Head"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.228, 0 )
+[node name="RayCast" type="RayCast" parent="Head/Camera"]
+transform = Transform( 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 enabled = true
 cast_to = Vector3( 0, 0, -10 )
 script = ExtResource( 2 )
@@ -37,39 +40,50 @@ margin_top = 20.0
 margin_right = 93.0
 margin_bottom = 51.0
 text = "Ctrl: sprint
-Shift: crouch"
+Shift: crouch
+E: interact/pickup
+Scroll wheel: select inventory slot
+Left Mouse Button: throw"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -100.0
+margin_left = 18.0
+margin_top = -108.0
+margin_right = -15.0
+margin_bottom = -106.0
+alignment = 1
 
-[node name="Panel" type="Panel" parent="CanvasLayer/HBoxContainer"]
-margin_right = 100.0
+[node name="Panel" type="TextureRect" parent="CanvasLayer/HBoxContainer"]
+margin_left = 341.0
+margin_right = 441.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 100, 100 )
+texture = ExtResource( 4 )
+expand = true
 
-[node name="Panel2" type="Panel" parent="CanvasLayer/HBoxContainer"]
-margin_left = 104.0
-margin_right = 204.0
+[node name="Panel2" type="TextureRect" parent="CanvasLayer/HBoxContainer"]
+margin_left = 445.0
+margin_right = 545.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 100, 100 )
+texture = ExtResource( 4 )
+expand = true
 
-[node name="Panel3" type="Panel" parent="CanvasLayer/HBoxContainer"]
-margin_left = 208.0
-margin_right = 308.0
+[node name="Panel3" type="TextureRect" parent="CanvasLayer/HBoxContainer"]
+margin_left = 549.0
+margin_right = 649.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 100, 100 )
+texture = ExtResource( 4 )
+expand = true
 
-[node name="Panel4" type="Panel" parent="CanvasLayer/HBoxContainer"]
-margin_left = 312.0
-margin_right = 412.0
-margin_bottom = 100.0
-rect_min_size = Vector2( 100, 100 )
-
-[node name="Panel5" type="Panel" parent="CanvasLayer/HBoxContainer"]
-margin_left = 416.0
-margin_right = 516.0
-margin_bottom = 100.0
-rect_min_size = Vector2( 100, 100 )
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchor_right = 0.209
+margin_left = 506.0
+margin_top = 264.0
+margin_right = 2339.98
+margin_bottom = 2312.0
+rect_scale = Vector2( 0.01, 0.01 )
+texture = ExtResource( 3 )

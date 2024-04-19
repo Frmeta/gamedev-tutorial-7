@@ -8,13 +8,14 @@ albedo_color = Color( 0.12549, 1, 0, 1 )
 [sub_resource type="CubeMesh" id=1]
 material = SubResource( 3 )
 
-[sub_resource type="BoxShape" id=2]
+[sub_resource type="BoxShape" id=4]
 
 [node name="Box" type="RigidBody"]
 script = ExtResource( 1 )
+scene_name = "BoxItem"
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 mesh = SubResource( 1 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-shape = SubResource( 2 )
+shape = SubResource( 4 )
